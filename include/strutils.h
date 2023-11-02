@@ -15,7 +15,7 @@
 /* initialize a custom exit code for all *_or_err functions */
 extern void strutils_set_exitcode(int exit_code);
 
-extern int parse_size(const char *str, uintmax_t *res, int *power);
+extern int ul_parse_size(const char *str, uintmax_t *res, int *power);
 extern int strtosize(const char *str, uintmax_t *res);
 extern uintmax_t strtosize_or_err(const char *str, const char *errmesg);
 
@@ -214,7 +214,7 @@ extern int string_to_bitarray(const char *list, char *ary,
 extern int string_to_bitmask(const char *list,
 			     unsigned long *mask,
 			     long (*name2flag)(const char *, size_t));
-extern int parse_range(const char *str, int *lower, int *upper, int def);
+extern int ul_parse_range(const char *str, int *lower, int *upper, int def);
 
 extern int streq_paths(const char *a, const char *b);
 
@@ -367,7 +367,7 @@ static inline void strrem(char *s, int rem)
 	*p = '\0';
 }
 
-extern char *strnappend(const char *s, const char *suffix, size_t b);
+extern char *ul_strnappend(const char *s, const char *suffix, size_t b);
 extern char *strappend(const char *s, const char *suffix);
 extern char *strfappend(const char *s, const char *format, ...)
 		 __attribute__ ((__format__ (__printf__, 2, 3)));

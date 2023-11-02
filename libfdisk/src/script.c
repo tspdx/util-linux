@@ -888,7 +888,7 @@ static int next_number(char **s, uint64_t *num, int *power)
 
 	tk = next_token(s);
 	if (tk)
-		rc = parse_size(tk, (uintmax_t *) num, power);
+		rc = ul_parse_size(tk, (uintmax_t *) num, power);
 	return rc;
 }
 
@@ -1455,7 +1455,7 @@ int fdisk_apply_script_headers(struct fdisk_context *cxt, struct fdisk_script *d
 	if (str) {
 		uintmax_t sz;
 
-		rc = parse_size(str, &sz, NULL);
+		rc = ul_parse_size(str, &sz, NULL);
 		if (rc == 0)
 			rc = fdisk_save_user_grain(cxt, sz);
 		if (rc)
@@ -1478,7 +1478,7 @@ int fdisk_apply_script_headers(struct fdisk_context *cxt, struct fdisk_script *d
 	if (str) {
 		uintmax_t sz;
 
-		rc = parse_size(str, &sz, NULL);
+		rc = ul_parse_size(str, &sz, NULL);
 		if (rc == 0)
 			rc = fdisk_gpt_set_npartitions(cxt, sz);
 	}

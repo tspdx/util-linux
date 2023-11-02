@@ -63,7 +63,7 @@ static int do_scale_by_power (uintmax_t *x, int base, int power)
  * Note that the function does not accept numbers with '-' (negative sign)
  * prefix.
  */
-int parse_size(const char *str, uintmax_t *res, int *power)
+int ul_parse_size(const char *str, uintmax_t *res, int *power)
 {
 	const char *p;
 	char *end;
@@ -219,7 +219,7 @@ err:
 
 int strtosize(const char *str, uintmax_t *res)
 {
-	return parse_size(str, res, NULL);
+	return ul_parse_size(str, res, NULL);
 }
 
 int isdigit_strend(const char *str, const char **end)
@@ -849,7 +849,7 @@ int string_to_bitmask(const char *list,
  *
  * Returns: 0 on success, <0 on error.
  */
-int parse_range(const char *str, int *lower, int *upper, int def)
+int ul_parse_range(const char *str, int *lower, int *upper, int def)
 {
 	char *end = NULL;
 
@@ -936,7 +936,7 @@ int streq_paths(const char *a, const char *b)
 	return 0;
 }
 
-char *strnappend(const char *s, const char *suffix, size_t b)
+char *ul_strnappend(const char *s, const char *suffix, size_t b)
 {
         size_t a;
         char *r;
@@ -968,7 +968,7 @@ char *strnappend(const char *s, const char *suffix, size_t b)
 
 char *strappend(const char *s, const char *suffix)
 {
-        return strnappend(s, suffix, suffix ? strlen(suffix) : 0);
+        return ul_strnappend(s, suffix, suffix ? strlen(suffix) : 0);
 }
 
 char *strfappend(const char *s, const char *format, ...)
@@ -984,7 +984,7 @@ char *strfappend(const char *s, const char *format, ...)
 	if (sz < 0)
 		return NULL;
 
-	res = strnappend(s, val, sz);
+	res = ul_strnappend(s, val, sz);
 	free(val);
 	return res;
 }
